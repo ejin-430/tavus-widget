@@ -1,88 +1,54 @@
-#chat-launch-container {
+#chat-launch-img-desktop { display: block; }
+#chat-launch-img-mobile  { display: none; }
+
+@media (max-width: 768px) {
+  #chat-launch-img-desktop { display: none; }
+  #chat-launch-img-mobile  { display: block; }
+}
+
+/* Tweak the size/position of the launch GIF */
+#chat-launch-img-desktop,
+#chat-launch-img-mobile {
   position: fixed;
   bottom: 25px;
   right: 25px;
-  width: 25vw;
-  max-width: 380px;
-  height: auto;
   cursor: pointer;
   z-index: 1000;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  overflow: hidden;
+  transition: transform .3s ease;
 }
 
+/* Make desktop GIF a bit larger and a bit lower */
 #chat-launch-img-desktop {
-  width: 100%;
-  height: auto;
+  width: 30vw;
+  max-width: 450px;
+  transform: translateY(8px);
 }
 
+/* Mobile GIF size */
 #chat-launch-img-mobile {
-  display: none;
+  width: 40vw;
+  max-width: 320px;
 }
 
-@media (max-width: 768px) {
-  #chat-launch-container {
-    bottom: 90px;
-    width: 153.6px;
-    height: 172.8px;
-  }
-
-  #chat-launch-img-desktop {
-    display: none;
-  }
-
-  #chat-launch-img-mobile {
-    display: block;
-    width: 307.2px;
-    height: 172.8px;
-    object-fit: cover;
-  }
-}
-
+/* Chat wrapper size tweaks */
 #tavus-chat-wrapper {
   position: fixed;
   bottom: 25px;
   right: 25px;
   width: 50vw;
+  height: 65vw; 
   max-width: 95%;
-  height: 70vw;
   max-height: 95%;
-  background-color: black;
+  background: transparent;
   border-radius: 10px;
+  overflow: hidden;
   z-index: 9998;
 }
-
 @media (max-width: 768px) {
   #tavus-chat-wrapper {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100vw;
-    height: 100vh;
-    max-width: none;
-    max-height: none;
-  }
-
-  #tavus-chat-wrapper iframe {
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100vw; height: 100vh;
+    max-width: none; max-height: none;
     border-radius: 0;
   }
-}
-
-#close-chat-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 10000;
-  border: none;
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  font-size: 20px;
-  font-weight: bold;
-  background: white;
-  color: black;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }

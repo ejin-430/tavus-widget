@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/tavus-widget/static/css/main.44449f5c.css",
+    "main.js": "/tavus-widget/static/js/main.97dc6ca0.js",
+    "index.html": "/tavus-widget/index.html",
+    "main.44449f5c.css.map": "/tavus-widget/static/css/main.44449f5c.css.map",
+    "main.97dc6ca0.js.map": "/tavus-widget/static/js/main.97dc6ca0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.44449f5c.css",
+    "static/js/main.97dc6ca0.js"
+  ]
+}

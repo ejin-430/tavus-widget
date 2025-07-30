@@ -19,8 +19,8 @@ export async function handler() {
         replica_id:  REPLICA_ID,
         callback_url: CALLBACK_URL,
         properties: {
-          participant_left_timeout: 5,
-          max_call_duration:        100,
+          participant_left_timeout: 10,
+          max_call_duration: 600,
           participant_absent_timeout: 30,
         },
       }),

@@ -21,7 +21,7 @@
 
 #mobile-gif-wrapper { display: none; }
 
-@media (max-width: 768px) {
+@media (max-width: 380px) {
   #chat-launch-img-desktop { display: none; }
   
   #chat-launch-container {
@@ -65,7 +65,7 @@
   z-index: 9998;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 380px) {
   #tavus-chat-wrapper {
     top: 0;
     left: 0;

@@ -77,11 +77,24 @@ function App() {
             &times;
           </button>
 
-          <div>
+          <div
+            style={{
+              width:          '100%',
+              height:         '100%',
+              display:        'flex',
+              alignItems:     'center',
+              justifyContent: 'center',
+            }}
+          >
             <Conversation
               url={conversationUrl}
               onLeave={handleCloseChat}
               onCallFrame={handleCallFrame}
+              style={{
+                width: '100%',
+                height: '100%',
+                borderRadius: 10,
+              }}
             />
           </div>
         </div>

@@ -2,7 +2,6 @@
   "name": "tavus-widget",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ejin-430.github.io/tavus-widget",
   "dependencies": {
     "@daily-co/daily-js": "^0.81.0",
     "@daily-co/daily-react": "^0.23.1",

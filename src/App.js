@@ -79,12 +79,14 @@ function App() {
 
           <div
             style={{
-              width:          '100%',
-              height:         '100%',
-              display:        'flex',
-              alignItems:     'center',
+              width: '100%',
+              height: '100%',
+              display: 'flex',
+              alignItems: 'center',
               justifyContent: 'center',
               borderRadius: 10,
+              paddingTop: '50px',
+              boxSizing: 'border-box',
             }}
           >
             <Conversation
@@ -93,7 +95,7 @@ function App() {
               onCallFrame={handleCallFrame}
               style={{
                 width: '100%',
-                height: '100%',
+                height: 'calc(100% - 50px)',
                 borderRadius: 10,
               }}
             />

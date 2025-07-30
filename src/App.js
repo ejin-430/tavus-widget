@@ -69,61 +69,19 @@ function App() {
         <div
           id="tavus-chat-wrapper"
           className="chat-wrapper"
-          style={{
-            position:       'fixed',
-            bottom:         25,
-            right:          25,
-            width:          '50vw',
-            maxWidth:       '95%',
-            height:         '70vw',
-            maxHeight:      '95%',
-            borderRadius:   10,
-            backgroundColor:'black',
-            overflow:       'hidden',
-            zIndex:         9998,
-          }}
         >
           <button
             id="close-chat-btn"
             onClick={handleCloseChat}
-            style={{
-              position:     'absolute',
-              top:          10,
-              right:        10,
-              zIndex:       10000,
-              border:       'none',
-              borderRadius: '50%',
-              width:        36,
-              height:       36,
-              fontSize:     20,
-              fontWeight:   'bold',
-              background:   'white',
-              color:        'black',
-              cursor:       'pointer',
-              boxShadow:    '0 2px 6px rgba(0,0,0,0.2)',
-            }}
           >
             &times;
           </button>
 
-          <div
-            style={{
-              width:          '100%',
-              height:         '100%',
-              display:        'flex',
-              alignItems:     'center',
-              justifyContent: 'center',
-            }}
-          >
+          <div>
             <Conversation
               url={conversationUrl}
               onLeave={handleCloseChat}
               onCallFrame={handleCallFrame}
-              style={{
-                width:        '100%',
-                height:       '100%',
-                borderRadius: 10,
-              }}
             />
           </div>
         </div>

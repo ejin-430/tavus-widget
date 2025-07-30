@@ -14,14 +14,14 @@ function App() {
       });
       if (!res.ok) {
         console.error('Function error:', await res.text());
-        alert('Sorry, someone else is already chatting. Try again later.');
+        alert('Greg is currently chatting with someone else. Please try again later.');
         return null;
       }
       const { conversation_url } = await res.json();
       return conversation_url;
     } catch (err) {
       console.error('Network error:', err);
-      alert('Network error. Try again later.');
+      alert('Network error. Please try again later.');
       return null;
     }
   };
@@ -33,14 +33,14 @@ function App() {
 
     setConversationUrl(url);
     // Tell the host page to expand our iframe
-    window.parent.postMessage({ type: 'tavis-expand' }, '*');
+    window.parent.postMessage({ type: 'tavus-expand' }, '*');
   };
 
   // 3️⃣ When user closes the chat
   const handleCloseChat = () => {
     setConversationUrl(null);
     // Tell the host page to shrink our iframe back to launcher size
-    window.parent.postMessage({ type: 'tavis-collapse' }, '*');
+    window.parent.postMessage({ type: 'tavus-collapse' }, '*');
   };
 
   // 4️⃣ (Optional) if you need to do anything once the Daily callFrame arrives

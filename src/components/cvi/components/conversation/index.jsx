@@ -1,4 +1,3 @@
-// src/components/cvi/components/conversation/index.jsx
 import React, { useEffect, useRef } from 'react';
 
 export function Conversation({ url, onLeave, onCallFrame, style }) {
@@ -23,10 +22,13 @@ export function Conversation({ url, onLeave, onCallFrame, style }) {
       });
       callRef.current = call;
 
-      // 2. join with camera off by default
+      // 2. join with camera off + noise cancellation by default
       call.join({ url, startVideoOff: true });
+      call.updateInputSettings({
+        audio: { processor: { type: 'noise-cancellation' } },
+      }).catch(() => {});  // silent failure
 
-      // 3. once joined, double‑ensure camera off & enable noise cancellation
+      // 3. once joined, double‑ensure camera off
       call.on('joined-meeting', async () => {
         // turn off camera safely
         try {
@@ -34,17 +36,6 @@ export function Conversation({ url, onLeave, onCallFrame, style }) {
         } catch (err) {
           console.warn('Could not disable camera:', err);
         }
-
-        // enable noise cancellation
-        try {
-          await call.updateInputSettings({
-            audio: { processor: { type: 'noise-cancellation' } },
-          });
-        } catch (err) {
-          console.warn('Could not enable noise cancellation:', err);
-        }
-
-        // notify parent
         onCallFrame?.(call);
       });
 

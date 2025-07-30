@@ -14,7 +14,7 @@ exports.handler = async (event) => {
       body: JSON.stringify({
         persona_id: 'p9e1dcbc5d4d',
         replica_id: 'r3716387d56a',
-        callback_url: 'https://services.leadconnectorhq.com/hooks/AYspqufCjo27pWzGNkQJ/webhook-trigger/47ad6677-ef4a-4ede-8b24-84b1b557fc4attp//services.leadconnectorhq.com/hooks/…s:',
+        callback_url: 'https://services.leadconnectorhq.com/hooks/AYspqufCjo27pWzGNkQJ/webhook-trigger/47ad6677-ef4a-4ede-8b24-84b1b557fc4a',
         properties: { 
             participant_left_timeout: 5, 
             max_call_duration: 100, 

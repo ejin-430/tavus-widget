@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useState } from 'react';
 import { Conversation } from './components/cvi/components/conversation';
 import './App.css';
@@ -6,7 +5,7 @@ import './App.css';
 function App() {
   const [conversationUrl, setConversationUrl] = useState(null);
 
-  // 🎯 Serverless-backed conversation creator
+  // Call backend
   const createConversation = async () => {
     try {
       const res = await fetch('/.netlify/functions/create-conversation', {
@@ -14,14 +13,14 @@ function App() {
       });
       if (!res.ok) {
         console.error('Function error:', await res.text());
-        alert('Error creating conversation');
+        alert('Greg is currently chatting with another client. Please try again later.');
         return null;
       }
       const { conversation_url } = await res.json();
       return conversation_url;
     } catch (err) {
       console.error('Network error:', err);
-      alert('Error creating conversation');
+      alert('Greg is currently chatting with another client. Please try again later.');
       return null;
     }
   };
@@ -56,13 +55,11 @@ function App() {
             src="https://cdn.prod.website-files.com/5fcaa1865b722c42c67cde53/6883b10b48fcce90ac2e95d0_Start%20Video%20Call.gif"
             alt="Start Chat Desktop"
           />
-          <div id="mobile-gif-wrapper">
-            <img
-              id="chat-launch-img-mobile"
-              src="https://cdn.prod.website-files.com/5fcaa1865b722c42c67cde53/6883a6f85d050bf75ec010a9_Mobile%20-%20Start%20Video%20Call.gif"
-              alt="Start Chat Mobile"
-            />
-          </div>
+          <img
+            id="chat-launch-img-mobile"
+            src="https://cdn.prod.website-files.com/5fcaa1865b722c42c67cde53/6883a6f85d050bf75ec010a9_Mobile%20-%20Start%20Video%20Call.gif"
+            alt="Start Chat Mobile"
+          />
         </div>
       )}
 

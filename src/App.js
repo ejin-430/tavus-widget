@@ -55,11 +55,13 @@ function App() {
             src="https://cdn.prod.website-files.com/5fcaa1865b722c42c67cde53/6883b10b48fcce90ac2e95d0_Start%20Video%20Call.gif"
             alt="Start Chat Desktop"
           />
-          <img
-            id="chat-launch-img-mobile"
-            src="https://cdn.prod.website-files.com/5fcaa1865b722c42c67cde53/6883a6f85d050bf75ec010a9_Mobile%20-%20Start%20Video%20Call.gif"
-            alt="Start Chat Mobile"
-          />
+          <div id="mobile-gif-wrapper">
+            <img
+              id="chat-launch-img-mobile"
+              src="https://cdn.prod.website-files.com/5fcaa1865b722c42c67cde53/6883a6f85d050bf75ec010a9_Mobile%20-%20Start%20Video%20Call.gif"
+              alt="Start Chat Mobile"
+            />
+          </div>
         </div>
       )}
 

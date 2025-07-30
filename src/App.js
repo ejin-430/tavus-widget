@@ -31,7 +31,7 @@ function App() {
     if (!url) return;
 
     setConversationUrl(url);
-    // Tell the host page to expand iframe
+    // Tell the host page to expand our iframe
     window.parent.postMessage({ type: 'tavus-expand' }, '*');
   };
 
@@ -40,6 +40,11 @@ function App() {
     setConversationUrl(null);
     // Tell the host page to shrink iframe back to launcher size
     window.parent.postMessage({ type: 'tavus-collapse' }, '*');
+  };
+
+  // Daily callFrame arrives
+  const handleCallFrame = (callFrame) => {
+    console.log('[handleCallFrame] callFrame received:', callFrame);
   };
 
   return (

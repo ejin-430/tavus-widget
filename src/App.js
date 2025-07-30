@@ -35,11 +35,24 @@ function App() {
   // Called when conversation leaves
   const handleCloseChat = () => {
     setConversationUrl(null);
+    const handleCloseChat = () => {
+      setConversationUrl(null);
+      // tell the host to shrink us
+      window.parent.postMessage({ type: 'tavis-collapse' }, '*');
+    };
   };
 
   // Called once a real callFrame is available
   const handleCallFrame = (callFrame) => {
     console.log('[handleCallFrame] callFrame received:', callFrame);
+    const handleChatLaunch = async () => {
+      const url = await createConversation();
+      if (url) {
+        setConversationUrl(url);
+        // tell the host to expand us
+        window.parent.postMessage({ type: 'tavis-expand' }, '*');
+      }
+    };
   };
 
   return (
@@ -85,7 +98,7 @@ function App() {
               alignItems: 'center',
               justifyContent: 'center',
               borderRadius: 10,
-              paddingTop: '50px',
+              paddingTop: '40px',
               boxSizing: 'border-box',
             }}
           >
@@ -95,7 +108,7 @@ function App() {
               onCallFrame={handleCallFrame}
               style={{
                 width: '100%',
-                height: 'calc(100% - 50px)',
+                height: 'calc(100% - 40px)',
                 borderRadius: 10,
               }}
             />

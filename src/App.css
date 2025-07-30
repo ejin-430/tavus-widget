@@ -17,7 +17,7 @@
 
 #mobile-gif-wrapper { display: none; }
 
-@media (max-width: 768px) {
+@media (max-width: 154px) {
   #chat-launch-img-desktop { display: none; }
   
   #chat-launch-container {

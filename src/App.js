@@ -1,3 +1,4 @@
+// src/App.js
 import React, { useState } from 'react';
 import { Conversation } from './components/cvi/components/conversation';
 import './App.css';
@@ -5,7 +6,7 @@ import './App.css';
 function App() {
   const [conversationUrl, setConversationUrl] = useState(null);
 
-  // Call backend
+  // 1️⃣ Call your Netlify function to create the conversation
   const createConversation = async () => {
     try {
       const res = await fetch('/.netlify/functions/create-conversation', {
@@ -13,51 +14,44 @@ function App() {
       });
       if (!res.ok) {
         console.error('Function error:', await res.text());
-        alert('Greg is currently chatting with another client. Please try again later.');
+        alert('Sorry, someone else is already chatting. Try again later.');
         return null;
       }
       const { conversation_url } = await res.json();
       return conversation_url;
     } catch (err) {
       console.error('Network error:', err);
-      alert('Greg is currently chatting with another client. Please try again later.');
+      alert('Network error. Try again later.');
       return null;
     }
   };
 
-  // Launch conversation and store URL
+  // 2️⃣ When user clicks the launcher
   const handleChatLaunch = async () => {
     const url = await createConversation();
-    console.log('Conversation URL received:', url);
-    if (url) setConversationUrl(url);
+    if (!url) return;
+
+    setConversationUrl(url);
+    // Tell the host page to expand our iframe
+    window.parent.postMessage({ type: 'tavis-expand' }, '*');
   };
 
-  // Called when conversation leaves
+  // 3️⃣ When user closes the chat
   const handleCloseChat = () => {
     setConversationUrl(null);
-    const handleCloseChat = () => {
-      setConversationUrl(null);
-      // tell the host to shrink us
-      window.parent.postMessage({ type: 'tavis-collapse' }, '*');
-    };
+    // Tell the host page to shrink our iframe back to launcher size
+    window.parent.postMessage({ type: 'tavis-collapse' }, '*');
   };
 
-  // Called once a real callFrame is available
+  // 4️⃣ (Optional) if you need to do anything once the Daily callFrame arrives
   const handleCallFrame = (callFrame) => {
     console.log('[handleCallFrame] callFrame received:', callFrame);
-    const handleChatLaunch = async () => {
-      const url = await createConversation();
-      if (url) {
-        setConversationUrl(url);
-        // tell the host to expand us
-        window.parent.postMessage({ type: 'tavis-expand' }, '*');
-      }
-    };
+    // you could also postMessage here if you wanted
   };
 
   return (
     <div className="app-container">
-      {!conversationUrl && (
+      {!conversationUrl ? (
         <div
           id="chat-launch-container"
           onClick={handleChatLaunch}
@@ -76,20 +70,11 @@ function App() {
             />
           </div>
         </div>
-      )}
-
-      {conversationUrl && (
-        <div
-          id="tavus-chat-wrapper"
-          className="chat-wrapper"
-        >
-          <button
-            id="close-chat-btn"
-            onClick={handleCloseChat}
-          >
+      ) : (
+        <div id="tavus-chat-wrapper" className="chat-wrapper">
+          <button id="close-chat-btn" onClick={handleCloseChat}>
             &times;
           </button>
-
           <div
             style={{
               width: '100%',

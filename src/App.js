@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useState } from 'react';
 import { Conversation } from './components/cvi/components/conversation';
 import './App.css';
@@ -6,7 +5,7 @@ import './App.css';
 function App() {
   const [conversationUrl, setConversationUrl] = useState(null);
 
-  // 1️⃣ Call your Netlify function to create the conversation
+  // Call Netlify function to create the conversation
   const createConversation = async () => {
     try {
       const res = await fetch('/.netlify/functions/create-conversation', {
@@ -26,27 +25,21 @@ function App() {
     }
   };
 
-  // 2️⃣ When user clicks the launcher
+  // When user clicks the launcher
   const handleChatLaunch = async () => {
     const url = await createConversation();
     if (!url) return;
 
     setConversationUrl(url);
-    // Tell the host page to expand our iframe
+    // Tell the host page to expand iframe
     window.parent.postMessage({ type: 'tavus-expand' }, '*');
   };
 
-  // 3️⃣ When user closes the chat
+  // When user closes the chat
   const handleCloseChat = () => {
     setConversationUrl(null);
-    // Tell the host page to shrink our iframe back to launcher size
+    // Tell the host page to shrink iframe back to launcher size
     window.parent.postMessage({ type: 'tavus-collapse' }, '*');
-  };
-
-  // 4️⃣ (Optional) if you need to do anything once the Daily callFrame arrives
-  const handleCallFrame = (callFrame) => {
-    console.log('[handleCallFrame] callFrame received:', callFrame);
-    // you could also postMessage here if you wanted
   };
 
   return (

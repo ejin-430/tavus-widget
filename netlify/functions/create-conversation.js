@@ -17,7 +17,7 @@ exports.handler = async (event) => {
         callback_url: 'https://services.leadconnectorhq.com/hooks/AYspqufCjo27pWzGNkQJ/webhook-trigger/47ad6677-ef4a-4ede-8b24-84b1b557fc4a',
         properties: { 
             participant_left_timeout: 5, 
-            max_call_duration: 100, 
+            max_call_duration: 600, 
             participant_absent_timeout: 30 
         },
       }),
